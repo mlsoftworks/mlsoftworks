@@ -1,631 +1,640 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ML Softworks | Soluções Financeiras Inteligentes</title>
-  <meta name="description" content="FinanceWeb e FinanceMobile - Soluções completas para gestão financeira pessoal e empresarial">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Softworks — Soluções financeiras inteligentes</title>
+  <meta name="description" content="FinanceWeb e FinanceMobile — soluções premium para gestão financeira pessoal e empresarial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* ---------- Design tokens ---------- */
+    :root {
+      --bg: #07070b;
+      --bg-elev: #0c0c12;
+      --surface: #0f0f17;
+      --surface-2: #14141f;
+      --border: rgba(255, 255, 255, 0.06);
+      --border-strong: rgba(255, 255, 255, 0.12);
+      --text: #f4f4f7;
+      --text-muted: #8b8b99;
+      --text-dim: #5c5c6b;
+      --brand: #7c7cff;
+      --brand-2: #b07cff;
+      --brand-soft: rgba(124, 124, 255, 0.14);
+      --accent: #6ee7b7;
+      --warning: #fbbf24;
+      --radius-sm: 12px;
+      --radius: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+      --shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+      --shadow-brand: 0 20px 60px -15px rgba(124, 124, 255, 0.45);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+      --container: 1200px;
     }
 
+    /* ---------- Reset ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
-      color: #ffffff;
-      line-height: 1.5;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      font-weight: 400;
+      overflow-x: hidden;
+      letter-spacing: -0.005em;
+    }
+    h1, h2, h3, h4 { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    ::selection { background: var(--brand); color: white; }
+
+    /* ---------- Ambient backdrop ---------- */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(60% 50% at 15% 0%, rgba(124, 124, 255, 0.18), transparent 60%),
+        radial-gradient(50% 40% at 85% 10%, rgba(176, 124, 255, 0.14), transparent 60%),
+        radial-gradient(40% 35% at 50% 100%, rgba(110, 231, 183, 0.07), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: "";
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 50% 30%, black 30%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
+    /* ---------- Layout ---------- */
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+    section { position: relative; z-index: 1; }
 
+    /* ---------- Header ---------- */
     .header {
-      position: sticky;
-      top: 0;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      z-index: 1000;
+      position: sticky; top: 0;
+      background: rgba(7, 7, 11, 0.6);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid transparent;
+      z-index: 50;
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
     }
+    .header.scrolled { border-bottom-color: var(--border); background: rgba(7, 7, 11, 0.85); }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; }
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0;
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-mark {
+      width: 38px; height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      display: grid; place-items: center;
+      box-shadow: 0 8px 24px -8px rgba(124, 124, 255, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+      position: relative;
+      overflow: hidden;
     }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .logo-mark::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.8s var(--ease);
     }
+    .logo:hover .logo-mark::after { transform: translateX(100%); }
+    .logo-mark svg { width: 20px; height: 20px; stroke: white; }
+    .logo-text { font-family: 'Inter Tight', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+    .logo-text span { background: linear-gradient(135deg, var(--brand), var(--brand-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-icon svg {
-      width: 22px;
-      height: 22px;
-      stroke: white;
-      stroke-width: 1.8;
-    }
-
-    .logo-text {
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-text span {
-      color: #6366f1;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-    }
-
+    .nav-links { display: flex; gap: 8px; align-items: center; }
     .nav-links a {
-      text-decoration: none;
-      color: #a1a1aa;
-      font-weight: 500;
-      transition: color 0.3s;
+      color: var(--text-muted); font-size: 14px; font-weight: 500;
+      padding: 8px 16px; border-radius: 999px;
+      transition: color 0.25s var(--ease-soft), background 0.25s var(--ease-soft);
     }
-
-    .nav-links a:hover {
-      color: #6366f1;
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .nav-cta {
+      padding: 9px 18px !important;
+      background: rgba(255,255,255,0.06);
+      color: var(--text) !important;
+      border: 1px solid var(--border);
     }
+    .nav-cta:hover { background: rgba(255,255,255,0.1) !important; border-color: var(--border-strong); }
 
-    .hero {
-      padding: 100px 0 80px;
-      text-align: center;
+    /* ---------- Hero ---------- */
+    .hero { padding: 140px 0 120px; text-align: center; position: relative; }
+    .hero-orb {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 720px; height: 720px;
+      background: radial-gradient(circle, rgba(124, 124, 255, 0.25), transparent 60%);
+      filter: blur(40px);
+      z-index: -1;
+      animation: float 12s var(--ease) infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -52%) scale(1.05); }
     }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      border-radius: 40px;
-      font-size: 14px;
-      color: #818cf8;
-      margin-bottom: 30px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px 7px 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px; color: var(--text-muted); font-weight: 500;
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
     }
-
-    .badge svg {
-      width: 14px;
-      height: 14px;
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.15);
+      animation: pulse 2s var(--ease-soft) infinite;
     }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
     .hero h1 {
-      font-size: 62px;
+      font-size: clamp(40px, 6vw, 76px);
       font-weight: 700;
-      letter-spacing: -2px;
-      line-height: 1.1;
+      letter-spacing: -0.035em;
+      line-height: 1.02;
       margin-bottom: 24px;
-      background: linear-gradient(135deg, #ffffff, #a1a1aa);
+      background: linear-gradient(180deg, #ffffff 0%, #b8b8c8 100%);
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
-
-    .hero p {
-      font-size: 20px;
-      color: #a1a1aa;
-      max-width: 600px;
-      margin: 0 auto 40px;
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      border-radius: 40px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .btn-primary svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 32px;
-      background: transparent;
-      border: 1px solid #27272a;
-      border-radius: 40px;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      margin-left: 16px;
-      transition: all 0.3s;
-    }
-
-    .btn-secondary svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .btn-secondary:hover {
-      border-color: #6366f1;
-      color: #6366f1;
-    }
-
-    .features {
-      padding: 100px 0;
-      background: #0f0f14;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 60px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px;
-    }
-
-    .feature-card {
-      background: #14141c;
-      border: 1px solid #1f1f2a;
-      border-radius: 24px;
-      padding: 32px;
-      transition: all 0.3s;
-      position: relative;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: #6366f1;
-    }
-
-    .feature-icon {
-      width: 56px;
-      height: 56px;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 24px;
-    }
-
-    .feature-icon svg {
-      width: 28px;
-      height: 28px;
-      stroke: white;
-      stroke-width: 1.5;
-    }
-
-    .feature-card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .feature-card p {
-      color: #a1a1aa;
+    .hero-sub {
+      font-size: clamp(16px, 1.5vw, 19px);
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 0 auto 44px;
       line-height: 1.6;
     }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-    .coming-soon-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
+      white-space: nowrap;
+    }
+    .btn svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white;
+      box-shadow: 0 10px 30px -10px rgba(124, 124, 255, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(124, 124, 255, 0.7), inset 0 1px 0 rgba(255,255,255,0.25); }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--border-strong); transform: translateY(-2px); }
+
+    /* ---------- Section base ---------- */
+    .section { padding: 120px 0; }
+    .section-head { text-align: center; margin-bottom: 72px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+      background: linear-gradient(180deg, #ffffff, #c0c0d0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .section-sub { color: var(--text-muted); font-size: 17px; }
+
+    /* ---------- Features ---------- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .feature-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.005));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), background 0.4s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), rgba(124, 124, 255, 0.08), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s var(--ease);
+      pointer-events: none;
+    }
+    .feature-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124, 124, 255, 0.15), rgba(176, 124, 255, 0.1));
+      border: 1px solid rgba(124, 124, 255, 0.2);
+      display: grid; place-items: center;
+      margin-bottom: 22px;
+    }
+    .feature-icon svg { width: 20px; height: 20px; stroke: var(--brand); }
+    .feature-card h3 { font-size: 17px; margin-bottom: 8px; letter-spacing: -0.015em; }
+    .feature-card p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
       padding: 4px 10px;
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 40px;
-      font-size: 10px;
-      font-weight: 500;
-      color: #fbbf24;
-      margin-top: 12px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 999px;
+      font-size: 11px; font-weight: 500;
+      color: var(--warning);
+      margin-top: 14px;
     }
+    .chip svg { width: 10px; height: 10px; }
 
-    .coming-soon-chip svg {
-      width: 10px;
-      height: 10px;
-    }
-
-    .products {
-      padding: 100px 0;
-    }
-
+    /* ---------- Products ---------- */
     .products-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-top: 40px;
+      gap: 20px;
     }
-
     .product-card {
-      background: linear-gradient(135deg, #14141c, #0f0f14);
-      border: 1px solid #1f1f2a;
-      border-radius: 32px;
-      padding: 48px;
-      transition: all 0.3s;
       position: relative;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.005));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      transition: transform 0.5s var(--ease), border-color 0.5s var(--ease);
     }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-      border-color: #6366f1;
+    .product-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+    .product-card::after {
+      content: "";
+      position: absolute; top: -50%; right: -30%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124, 124, 255, 0.12), transparent 60%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s var(--ease);
     }
-
-    .product-icon svg {
-      width: 48px;
-      height: 48px;
-      stroke: #6366f1;
-      stroke-width: 1.5;
+    .product-card:hover::after { opacity: 1; }
+    .product-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(124, 124, 255, 0.2), rgba(176, 124, 255, 0.12));
+      border: 1px solid rgba(124, 124, 255, 0.25);
+      display: grid; place-items: center;
       margin-bottom: 24px;
     }
-
-    .product-card h3 {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-
-    .product-card p {
-      color: #a1a1aa;
-      margin-bottom: 24px;
-    }
-
+    .product-icon svg { width: 24px; height: 24px; stroke: var(--brand); }
     .product-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: rgba(99, 102, 241, 0.1);
-      border-radius: 40px;
-      font-size: 12px;
-      color: #818cf8;
-      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: var(--brand-soft);
+      border-radius: 999px;
+      font-size: 11px; font-weight: 500;
+      color: #a5a5ff;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
     }
-
-    .product-tag svg {
-      width: 12px;
-      height: 12px;
-    }
-
+    .product-card h3 { font-size: 28px; margin-bottom: 10px; letter-spacing: -0.025em; }
+    .product-card > p { color: var(--text-muted); margin-bottom: 28px; font-size: 15px; max-width: 480px; }
     .product-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #6366f1;
-      text-decoration: none;
-      font-weight: 600;
-      transition: gap 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--brand); font-weight: 600; font-size: 14.5px;
+      transition: gap 0.3s var(--ease);
     }
-
-    .product-link svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .product-link:hover {
-      gap: 12px;
-    }
-
+    .product-link svg { width: 15px; height: 15px; transition: transform 0.3s var(--ease); }
+    .product-link:hover { gap: 12px; }
+    .product-link:hover svg { transform: translateX(3px); }
     .coming-soon-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: rgba(245, 158, 11, 0.15);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 40px;
-      font-size: 11px;
-      font-weight: 500;
-      color: #fbbf24;
+      position: absolute; top: 20px; right: 20px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 11px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: 999px;
+      font-size: 11px; font-weight: 500; color: var(--warning);
+      backdrop-filter: blur(10px);
     }
+    .coming-soon-badge svg { width: 11px; height: 11px; }
 
-    .coming-soon-badge svg {
-      width: 12px;
-      height: 12px;
+    /* Notify form */
+    .notify-form {
+      display: flex; gap: 8px; max-width: 420px;
+      padding: 6px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
     }
-
-    .pricing {
-      background: #0f0f14;
-      padding: 100px 0;
+    .notify-form:focus-within { border-color: var(--brand); background: rgba(124, 124, 255, 0.05); }
+    .notify-form input {
+      flex: 1; background: transparent; border: none; outline: none;
+      padding: 10px 14px; color: var(--text); font-size: 14px;
+      font-family: inherit;
     }
+    .notify-form input::placeholder { color: var(--text-dim); }
+    .notify-form button {
+      padding: 10px 18px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white; font-weight: 600; font-size: 13.5px;
+      transition: transform 0.2s var(--ease);
+    }
+    .notify-form button:hover { transform: scale(1.03); }
+    .notify-message { font-size: 12.5px; margin-top: 12px; min-height: 18px; transition: opacity 0.3s; color: var(--text-muted); }
 
+    /* ---------- Pricing ---------- */
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      max-width: 900px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; max-width: 880px; margin: 0 auto;
     }
-
     .pricing-card {
-      background: #14141c;
-      border: 1px solid #1f1f2a;
-      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.005));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
       padding: 40px;
+      position: relative;
+      transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+    }
+    .pricing-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+    .pricing-card.popular {
+      border-color: rgba(124, 124, 255, 0.35);
+      background: linear-gradient(180deg, rgba(124, 124, 255, 0.08), rgba(176, 124, 255, 0.02));
+      box-shadow: 0 30px 80px -30px rgba(124, 124, 255, 0.35);
+    }
+    .popular-badge {
+      position: absolute; top: -1px; right: 24px;
+      transform: translateY(-50%);
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      box-shadow: 0 6px 20px -6px rgba(124, 124, 255, 0.6);
+    }
+    .pricing-card h3 { font-size: 16px; color: var(--text-muted); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+    .price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+    .price-amount { font-family: 'Inter Tight', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.035em; }
+    .price-period { font-size: 15px; color: var(--text-muted); }
+    .price-note { color: var(--text-dim); font-size: 13px; margin-bottom: 28px; }
+    .pricing-card ul { list-style: none; margin: 0 0 32px; }
+    .pricing-card li {
+      padding: 9px 0; color: var(--text-muted);
+      display: flex; align-items: center; gap: 12px;
+      font-size: 14.5px;
+      border-bottom: 1px solid var(--border);
+    }
+    .pricing-card li:last-child { border-bottom: none; }
+    .pricing-card li svg { width: 14px; height: 14px; stroke: var(--accent); flex-shrink: 0; }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+
+    /* ---------- CTA ---------- */
+    .cta {
+      padding: 140px 0;
       text-align: center;
-      transition: all 0.3s;
       position: relative;
     }
-
-    .pricing-card.popular {
-      border-color: #6366f1;
-      transform: scale(1.02);
+    .cta-card {
+      background: linear-gradient(180deg, rgba(124, 124, 255, 0.08), rgba(176, 124, 255, 0.02));
+      border: 1px solid rgba(124, 124, 255, 0.18);
+      border-radius: var(--radius-xl);
+      padding: 80px 40px;
+      position: relative;
+      overflow: hidden;
     }
-
-    .popular-badge {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      padding: 6px 16px;
-      border-radius: 40px;
-      font-size: 12px;
-      font-weight: 600;
+    .cta-card::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(60% 100% at 50% 0%, rgba(124, 124, 255, 0.15), transparent 70%);
+      pointer-events: none;
     }
+    .cta-card > * { position: relative; }
+    .cta h2 { font-size: clamp(30px, 4vw, 44px); letter-spacing: -0.03em; margin-bottom: 16px; }
+    .cta p { color: var(--text-muted); margin-bottom: 36px; font-size: 17px; }
 
-    .pricing-card h3 {
-      font-size: 24px;
-      margin-bottom: 16px;
-    }
-
-    .price {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .price span {
-      font-size: 16px;
-      font-weight: 400;
-      color: #a1a1aa;
-    }
-
-    .pricing-card ul {
-      list-style: none;
-      margin: 32px 0;
-      text-align: left;
-    }
-
-    .pricing-card li {
-      padding: 10px 0;
-      color: #a1a1aa;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pricing-card li svg {
-      width: 16px;
-      height: 16px;
-      stroke: #10b981;
-    }
-
-    .cta {
-      padding: 100px 0;
-      text-align: center;
-    }
-
-    .cta h2 {
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-    }
-
-    .cta p {
-      color: #a1a1aa;
-      margin-bottom: 32px;
-    }
-
+    /* ---------- Footer ---------- */
     .footer {
-      border-top: 1px solid #1f1f2a;
-      padding: 48px 0;
-      text-align: center;
-      color: #a1a1aa;
+      border-top: 1px solid var(--border);
+      padding: 56px 0 40px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
     }
-
-    .footer-links {
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 14px; margin-top: 16px; max-width: 320px; }
+    .footer h4 { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); margin-bottom: 18px; }
+    .footer-col a {
+      display: block;
+      padding: 6px 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: color 0.25s var(--ease);
+    }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
       display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: #a1a1aa;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer-links a:hover {
-      color: #6366f1;
-    }
-
-    .footer-contact {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .footer-contact a {
-      display: inline-flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      color: #a1a1aa;
-      text-decoration: none;
-      transition: color 0.3s;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-dim);
     }
 
-    .footer-contact a svg {
-      width: 14px;
-      height: 14px;
+    /* ---------- Reveal animations ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal[data-delay="1"] { transition-delay: 0.08s; }
+    .reveal[data-delay="2"] { transition-delay: 0.16s; }
+    .reveal[data-delay="3"] { transition-delay: 0.24s; }
+    .reveal[data-delay="4"] { transition-delay: 0.32s; }
+    .reveal[data-delay="5"] { transition-delay: 0.4s; }
+    .reveal[data-delay="6"] { transition-delay: 0.48s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
     }
 
-    .footer-contact a:hover {
-      color: #6366f1;
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
     }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 20px;
-      }
-      .hero h1 {
-        font-size: 40px;
-      }
-      .nav-links {
-        display: none;
-      }
-      .products-grid {
-        grid-template-columns: 1fr;
-      }
-      .pricing-grid {
-        grid-template-columns: 1fr;
-      }
-      .pricing-card.popular {
-        transform: scale(1);
-      }
-      .section-title {
-        font-size: 32px;
-      }
+    @media (max-width: 720px) {
+      .container { padding: 0 20px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .section { padding: 80px 0; }
+      .hero { padding: 90px 0 80px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .product-card, .pricing-card { padding: 32px 28px; }
+      .cta-card { padding: 56px 24px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { justify-content: center; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<svg style="display: none;">
+<svg style="display:none" aria-hidden="true">
   <defs>
-    <g id="icon-trending"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m7 16 5-5 3 3 5-5"/></g>
-    <g id="icon-shield"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
-    <g id="icon-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></g>
-    <g id="icon-brain"><path d="M12 2a10 10 0 0 1 10 10c0 5.5-4 10-10 10-4 0-7-2-9-5"/><path d="M12 8v4l3 3"/></g>
-    <g id="icon-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g>
-    <g id="icon-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></g>
-    <g id="icon-desktop"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></g>
-    <g id="icon-mobile"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></g>
-    <g id="icon-check"><polyline points="20 6 9 17 4 12"/></g>
-    <g id="icon-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></g>
-    <g id="icon-mail"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></g>
-    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></g>
-    <g id="icon-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></g>
-    <g id="icon-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></g>
-    <g id="icon-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g>
+    <g id="i-trend"><path d="M3 3v16a2 2 0 0 0 2 2h16" stroke-linecap="round"/><path d="m7 16 5-5 3 3 5-5" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linejoin="round"/></g>
+    <g id="i-phone"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></g>
+    <g id="i-brain"><path d="M12 2a4 4 0 0 0-4 4 3 3 0 0 0-3 3v1a3 3 0 0 0 3 3v1a3 3 0 0 0 3 3 4 4 0 0 0 4 4 4 4 0 0 0 4-4 3 3 0 0 0 3-3v-1a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3 4 4 0 0 0-4-4z" stroke-linejoin="round"/></g>
+    <g id="i-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g>
+    <g id="i-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></g>
+    <g id="i-desktop"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></g>
+    <g id="i-mobile"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01"/></g>
+    <g id="i-check"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-arrow"><line x1="5" y1="12" x2="19" y2="12" stroke-linecap="round"/><polyline points="12 5 19 12 12 19" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <g id="i-mail"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m22 7-10 7L2 7"/></g>
+    <g id="i-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+    <g id="i-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></g>
+    <g id="i-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g>
+    <g id="i-spark"><path d="M12 2v6m0 8v6M2 12h6m8 0h6M5 5l4 4m6 6 4 4M5 19l4-4m6-6 4-4"/></g>
   </defs>
 </svg>
 
-<header class="header">
+<header class="header" id="header">
   <div class="container">
     <nav class="nav">
-      <div class="logo">
-        <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-trending"/></svg>
+      <a href="#" class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-trend"/></svg>
         </div>
         <div class="logo-text">ML<span>Softworks</span></div>
-      </div>
+      </a>
       <div class="nav-links">
         <a href="#features">Funcionalidades</a>
         <a href="#products">Produtos</a>
         <a href="#pricing">Preços</a>
-        <a href="#contact">Contato</a>
+        <a href="#contact" class="nav-cta">Fale conosco</a>
       </div>
     </nav>
   </div>
 </header>
 
 <section class="hero">
+  <div class="hero-orb" aria-hidden="true"></div>
   <div class="container">
-    <div class="badge">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-star"/></svg>
-      Soluções financeiras inteligentes
+    <div class="badge reveal">
+      <span class="badge-dot"></span>
+      Nova era da gestão financeira inteligente
     </div>
-    <h1>Gerencie suas finanças<br>com simplicidade e poder</h1>
-    <p>ML Softworks desenvolve soluções completas para gestão financeira pessoal e empresarial.</p>
-    <a href="#products" class="btn-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
-      Conhecer Soluções
-    </a>
-    <a href="#contact" class="btn-secondary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-phone"/></svg>
-      Fale conosco
-    </a>
+    <h1 class="reveal" data-delay="1">
+      Suas finanças,<br />com <em>clareza absoluta.</em>
+    </h1>
+    <p class="hero-sub reveal" data-delay="2">
+      A ML Softworks cria soluções premium para gestão financeira pessoal e empresarial. Tudo em um só lugar, com a simplicidade que você merece.
+    </p>
+    <div class="hero-actions reveal" data-delay="3">
+      <a href="#products" class="btn btn-primary">
+        Conhecer soluções
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-call"/></svg>
+        Fale conosco
+      </a>
+    </div>
   </div>
 </section>
 
-<section id="features" class="features">
+<section id="features" class="section">
   <div class="container">
-    <h2 class="section-title">Por que escolher a ML Softworks?</h2>
+    <div class="section-head reveal">
+      <div class="eyebrow">Funcionalidades</div>
+      <h2 class="section-title">Tudo que você precisa, refinado.</h2>
+      <p class="section-sub">Recursos pensados para entregar controle, segurança e tranquilidade no dia a dia.</p>
+    </div>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-trending"/></svg></div>
+      <div class="feature-card reveal" data-delay="1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-trend"/></svg></div>
         <h3>Dashboard intuitivo</h3>
         <p>Visualize todas as suas finanças em um só lugar com gráficos e métricas claras.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-shield"/></svg></div>
+      <div class="feature-card reveal" data-delay="2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-shield"/></svg></div>
         <h3>Dados no seu controle</h3>
         <p>Seus dados ficam onde você decide. Segurança e privacidade em primeiro lugar.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-smartphone"/></svg></div>
+      <div class="feature-card reveal" data-delay="3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-phone"/></svg></div>
         <h3>Sincronização mobile</h3>
         <p>Anote despesas no celular e sincronize automaticamente com o desktop.</p>
-        <div class="coming-soon-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-clock"/></svg>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg>
           Em breve
-        </div>
+        </span>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-brain"/></svg></div>
+      <div class="feature-card reveal" data-delay="1">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-brain"/></svg></div>
         <h3>Assistente IA</h3>
         <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-users"/></svg></div>
+      <div class="feature-card reveal" data-delay="2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-users"/></svg></div>
         <h3>Gestão de grupos</h3>
         <p>Divida despesas com amigos, família ou equipes de trabalho.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-target"/></svg></div>
+      <div class="feature-card reveal" data-delay="3">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-target"/></svg></div>
         <h3>Metas financeiras</h3>
         <p>Defina objetivos e acompanhe seu progresso em tempo real.</p>
       </div>
@@ -633,71 +642,81 @@
   </div>
 </section>
 
-<section id="products" class="products">
+<section id="products" class="section">
   <div class="container">
-    <h2 class="section-title">Nossos Produtos</h2>
+    <div class="section-head reveal">
+      <div class="eyebrow">Produtos</div>
+      <h2 class="section-title">Construídos com cuidado.</h2>
+      <p class="section-sub">Uma família de produtos integrados — pensados para acompanhar você em todos os momentos.</p>
+    </div>
     <div class="products-grid">
-      <div class="product-card">
-        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-desktop"/></svg></div>
-        <div class="product-tag">Disponível</div>
+      <div class="product-card reveal" data-delay="1">
+        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-desktop"/></svg></div>
+        <span class="product-tag">Disponível agora</span>
         <h3>FinanceWeb</h3>
         <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
         <a href="#pricing" class="product-link">
           Saiba mais
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg>
         </a>
       </div>
-      <div class="product-card coming-soon">
+      <div class="product-card reveal" data-delay="2">
         <div class="coming-soon-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-clock"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg>
           Em breve
         </div>
-        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-mobile"/></svg></div>
-        <div class="product-tag">Mobile</div>
+        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-mobile"/></svg></div>
+        <span class="product-tag">Mobile</span>
         <h3>FinanceMobile</h3>
         <p>Acompanhe suas finanças em qualquer lugar. Sincronização offline-first com o desktop.</p>
-        <div style="margin-top: 16px;">
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <input type="email" id="notifyEmail" placeholder="seu@email.com" style="flex:1; padding: 10px 16px; border-radius: 40px; background: #1f1f2a; border: 1px solid #2a2a35; color: white; font-size: 14px;">
-            <button id="notifyButton" style="padding: 10px 20px; border-radius: 40px; background: linear-gradient(135deg,#6366f1,#a855f7); border: none; color: white; font-weight: 500; cursor: pointer;">Notificar</button>
-          </div>
-          <p id="notifyMessage" style="font-size: 11px; color: #a1a1aa; margin-top: 12px;"></p>
-        </div>
+        <form class="notify-form" id="notifyForm" novalidate>
+          <input type="email" id="notifyEmail" placeholder="seu@email.com" autocomplete="email" required />
+          <button type="submit">Notificar</button>
+        </form>
+        <p class="notify-message" id="notifyMessage" aria-live="polite"></p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pricing" class="pricing">
+<section id="pricing" class="section">
   <div class="container">
-    <h2 class="section-title">Planos</h2>
+    <div class="section-head reveal">
+      <div class="eyebrow">Planos</div>
+      <h2 class="section-title">Preço justo. Sem surpresas.</h2>
+      <p class="section-sub">Comece a usar hoje. Cancele quando quiser.</p>
+    </div>
     <div class="pricing-grid">
-      <div class="pricing-card">
+      <div class="pricing-card reveal" data-delay="1">
         <h3>Mensal</h3>
-        <div class="price">R$ 10<span>/mês</span></div>
+        <div class="price">
+          <span class="price-amount">R$ 10</span>
+          <span class="price-period">/ mês</span>
+        </div>
+        <p class="price-note">Flexibilidade total, mês a mês.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Dashboard completo</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Metas financeiras</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Sincronização mobile</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Suporte por email</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Dashboard completo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Metas financeiras</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Sincronização mobile</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte por email</li>
         </ul>
-        <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">
-          Assinar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
-        </a>
+        <a href="#contact" class="btn btn-ghost">Começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
       </div>
-      <div class="pricing-card popular">
-        <div class="popular-badge">🔥 Mais popular</div>
+      <div class="pricing-card popular reveal" data-delay="2">
+        <span class="popular-badge">Mais popular</span>
         <h3>Anual</h3>
-        <div class="price">R$ 100<span>/ano</span></div>
+        <div class="price">
+          <span class="price-amount">R$ 100</span>
+          <span class="price-period">/ ano</span>
+        </div>
+        <p class="price-note">Equivale a 2 meses grátis.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Tudo do plano Mensal</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> 2 meses grátis</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Suporte prioritário</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Preço congelado</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Tudo do plano Mensal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> 2 meses grátis</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte prioritário</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Preço congelado</li>
         </ul>
-        <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">
-          Assinar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
-        </a>
+        <a href="#contact" class="btn btn-primary">Assinar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
@@ -705,55 +724,92 @@
 
 <section id="contact" class="cta">
   <div class="container">
-    <h2>Pronto para transformar sua gestão financeira?</h2>
-    <p>Baixe o FinanceWeb e comece hoje mesmo.</p>
-    <a href="#" class="btn-primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-download"/></svg>
-      Baixar Agora
-    </a>
+    <div class="cta-card reveal">
+      <h2>Pronto para uma nova forma de gerir suas finanças?</h2>
+      <p>Baixe o FinanceWeb e comece hoje mesmo. Leva menos de um minuto.</p>
+      <a href="#" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
+        Baixar agora
+      </a>
+    </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-links">
-      <a href="#features">Funcionalidades</a>
-      <a href="#products">Produtos</a>
-      <a href="#pricing">Preços</a>
-      <a href="#contact">Contato</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-trend"/></svg>
+          </div>
+          <div class="logo-text">ML<span>Softworks</span></div>
+        </a>
+        <p>Soluções premium para gestão financeira pessoal e empresarial.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#features">Funcionalidades</a>
+        <a href="#products">Produtos</a>
+        <a href="#pricing">Preços</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="mailto:matheushglira.ml@gmail.com">matheushglira.ml@gmail.com</a>
+        <a href="https://wa.me/5562993753059" target="_blank" rel="noopener">(62) 99375-3059</a>
+      </div>
     </div>
-    <div class="footer-contact">
-      <a href="mailto:matheushglira.ml@gmail.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-mail"/></svg>
-        matheushglira.ml@gmail.com
-      </a>
-      <a href="https://wa.me/5562993753059" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-phone"/></svg>
-        (62) 99375-3059
-      </a>
+    <div class="footer-bottom">
+      <span>© 2026 ML Softworks. Todos os direitos reservados.</span>
+      <span>Feito com cuidado em Goiânia, Brasil.</span>
     </div>
-    <p>© 2026 ML Softworks - Todos os direitos reservados</p>
   </div>
 </footer>
 
 <script>
-  document.getElementById('notifyButton').addEventListener('click', function() {
-    const email = document.getElementById('notifyEmail').value;
-    const message = document.getElementById('notifyMessage');
-    if (email && email.includes('@')) {
-      message.innerHTML = '✓ Obrigado! Avisaremos quando o app estiver disponível.';
-      message.style.color = '#10b981';
-      document.getElementById('notifyEmail').value = '';
-      setTimeout(() => {
-        message.innerHTML = '';
-      }, 3000);
+  // Header shadow on scroll
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // Mouse-tracked glow on feature cards
+  document.querySelectorAll('.feature-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      card.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+
+  // Notify form
+  const form = document.getElementById('notifyForm');
+  const message = document.getElementById('notifyMessage');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('notifyEmail');
+    const value = email.value.trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    if (valid) {
+      message.textContent = '✓ Obrigado! Avisaremos quando o app estiver disponível.';
+      message.style.color = '#6ee7b7';
+      email.value = '';
     } else {
-      message.innerHTML = '✗ Por favor, digite um e-mail válido.';
-      message.style.color = '#ef4444';
-      setTimeout(() => {
-        message.innerHTML = '';
-      }, 3000);
+      message.textContent = '✗ Por favor, digite um e-mail válido.';
+      message.style.color = '#f87171';
     }
+    setTimeout(() => { message.textContent = ''; }, 4000);
   });
 </script>
 
