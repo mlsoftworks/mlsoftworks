@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Softworks | Soluções Financeiras Inteligentes</title>
+  <meta name="description" content="FinanceWeb e FinanceMobile - Soluções completas para gestão financeira pessoal e empresarial">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
+      color: #ffffff;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Glassmorphism header */
+    .header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-text span {
+      color: #6366f1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #a1a1aa;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #6366f1;
+    }
+
+    .btn-outline {
+      padding: 10px 24px;
+      border-radius: 40px;
+      background: transparent;
+      border: 1px solid #27272a;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-outline:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+    }
+
+    /* Hero section */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 40px;
+      font-size: 14px;
+      color: #818cf8;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      font-size: 62px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff, #a1a1aa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 40px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 14px 32px;
+      background: transparent;
+      border: 1px solid #27272a;
+      border-radius: 40px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 16px;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: #6366f1;
+      color: #6366f1;
+    }
+
+    /* Features section */
+    .features {
+      padding: 100px 0;
+      background: #0f0f14;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: #14141c;
+      border: 1px solid #1f1f2a;
+      border-radius: 24px;
+      padding: 32px;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #6366f1;
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card p {
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* Products section */
+    .products {
+      padding: 100px 0;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 40px;
+    }
+
+    .product-card {
+      background: linear-gradient(135deg, #14141c, #0f0f14);
+      border: 1px solid #1f1f2a;
+      border-radius: 32px;
+      padding: 48px;
+      transition: all 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      border-color: #6366f1;
+    }
+
+    .product-icon {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+
+    .product-card h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .product-card p {
+      color: #a1a1aa;
+      margin-bottom: 24px;
+    }
+
+    .product-tag {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 40px;
+      font-size: 12px;
+      color: #818cf8;
+      margin-bottom: 16px;
+    }
+
+    /* Pricing section */
+    .pricing {
+      background: #0f0f14;
+      padding: 100px 0;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: #14141c;
+      border: 1px solid #1f1f2a;
+      border-radius: 32px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .pricing-card.popular {
+      border-color: #6366f1;
+      transform: scale(1.02);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .pricing-card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: #a1a1aa;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      margin: 32px 0;
+      text-align: left;
+    }
+
+    .pricing-card li {
+      padding: 10px 0;
+      color: #a1a1aa;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      color: #6366f1;
+      font-weight: bold;
+    }
+
+    /* CTA section */
+    .cta {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: #a1a1aa;
+      margin-bottom: 32px;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #1f1f2a;
+      padding: 48px 0;
+      text-align: center;
+      color: #a1a1aa;
+    }
+
+    .footer a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      color: #a1a1aa;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #6366f1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-card.popular {
+        transform: scale(1);
+      }
+      .section-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-icon">⚡</div>
+          <div class="logo-text">ML<span>Softworks</span></div>
+        </div>
+        <div class="nav-links">
+          <a href="#features">Funcionalidades</a>
+          <a href="#products">Produtos</a>
+          <a href="#pricing">Preços</a>
+          <a href="#contact">Contato</a>
+          <button class="btn-outline">Login</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="badge">✨ Soluções financeiras inteligentes</div>
+      <h1>Gerencie suas finanças<br>com simplicidade e poder</h1>
+      <p>ML Softworks desenvolve soluções completas para gestão financeira pessoal e empresarial.</p>
+      <a href="#products" class="btn-primary">Conhecer Soluções</a>
+      <a href="#contact" class="btn-secondary">Fale conosco</a>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">Por que escolher a ML Softworks?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Dashboard intuitivo</h3>
+          <p>Visualize todas as suas finanças em um só lugar com gráficos e métricas claras.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Dados no seu controle</h3>
+          <p>Seus dados ficam onde você decide. Segurança e privacidade em primeiro lugar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Sincronização mobile</h3>
+          <p>Anote despesas no celular e sincronize automaticamente com o desktop.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>Assistente IA</h3>
+          <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Gestão de grupos</h3>
+          <p>Divida despesas com amigos, família ou equipes de trabalho.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Metas financeiras</h3>
+          <p>Defina objetivos e acompanhe seu progresso em tempo real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="products" class="products">
+    <div class="container">
+      <h2 class="section-title">Nossos Produtos</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-icon">🖥️</div>
+          <div class="product-tag">Desktop</div>
+          <h3>FinanceWeb</h3>
+          <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
+          <a href="#pricing" style="color:#6366f1; text-decoration:none; font-weight:600;">Saiba mais →</a>
+        </div>
+        <div class="product-card">
+          <div class="product-icon">📱</div>
+          <div class="product-tag">Mobile</div>
+          <h3>FinanceMobile</h3>
+          <p>Acompanhe suas finanças em qualquer lugar. Sincronização offline-first com o desktop.</p>
+          <a href="#pricing" style="color:#6366f1; text-decoration:none; font-weight:600;">Saiba mais →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Planos</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Mensal</h3>
+          <div class="price">R$ 10<span>/mês</span></div>
+          <ul>
+            <li>Dashboard completo</li>
+            <li>Metas financeiras</li>
+            <li>Sincronização mobile</li>
+            <li>Suporte por email</li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">Assinar</a>
+        </div>
+        <div class="pricing-card popular">
+          <div class="popular-badge">🔥 Mais popular</div>
+          <h3>Anual</h3>
+          <div class="price">R$ 100<span>/ano</span></div>
+          <ul>
+            <li>Tudo do plano Mensal</li>
+            <li>2 meses grátis</li>
+            <li>Suporte prioritário</li>
+            <li>Preço congelado</li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">Assinar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta">
+    <div class="container">
+      <h2>Pronto para transformar sua gestão financeira?</h2>
+      <p>Baixe o FinanceWeb e comece hoje mesmo.</p>
+      <a href="#" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">Baixar Agora</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="#features">Funcionalidades</a>
+        <a href="#products">Produtos</a>
+        <a href="#pricing">Preços</a>
+        <a href="#contact">Contato</a>
+      </div>
+      <p>📧 matheushglira.ml@gmail.com | 📱 (62) 99375-3059</p>
+      <p style="margin-top: 24px;">&copy; 2026 ML Softworks - Todos os direitos reservados</p>
+    </div>
+  </footer>
+</body>
+</html>
