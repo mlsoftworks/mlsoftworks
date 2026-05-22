@@ -6,7 +6,6 @@
   <title>ML Softworks | Soluções Financeiras Inteligentes</title>
   <meta name="description" content="FinanceWeb e FinanceMobile - Soluções completas para gestão financeira pessoal e empresarial">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
   <style>
     * {
       margin: 0;
@@ -27,7 +26,6 @@
       padding: 0 32px;
     }
 
-    /* Glassmorphism header */
     .header {
       position: sticky;
       top: 0;
@@ -94,23 +92,6 @@
       color: #6366f1;
     }
 
-    .btn-outline {
-      padding: 10px 24px;
-      border-radius: 40px;
-      background: transparent;
-      border: 1px solid #27272a;
-      color: #fff;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .btn-outline:hover {
-      border-color: #6366f1;
-      color: #6366f1;
-    }
-
-    /* Hero section */
     .hero {
       padding: 100px 0 80px;
       text-align: center;
@@ -200,7 +181,6 @@
       color: #6366f1;
     }
 
-    /* Features section */
     .features {
       padding: 100px 0;
       background: #0f0f14;
@@ -261,7 +241,6 @@
       line-height: 1.6;
     }
 
-    /* Products section */
     .products {
       padding: 100px 0;
     }
@@ -286,15 +265,12 @@
       border-color: #6366f1;
     }
 
-    .product-icon {
-      margin-bottom: 24px;
-    }
-
     .product-icon svg {
       width: 48px;
       height: 48px;
       stroke: #6366f1;
       stroke-width: 1.5;
+      margin-bottom: 24px;
     }
 
     .product-card h3 {
@@ -368,7 +344,6 @@
       height: 12px;
     }
 
-    /* Pricing section */
     .pricing {
       background: #0f0f14;
       padding: 100px 0;
@@ -443,10 +418,9 @@
     .pricing-card li svg {
       width: 16px;
       height: 16px;
-      stroke: #6366f1;
+      stroke: #10b981;
     }
 
-    /* CTA section */
     .cta {
       padding: 100px 0;
       text-align: center;
@@ -464,7 +438,6 @@
       margin-bottom: 32px;
     }
 
-    /* Footer */
     .footer {
       border-top: 1px solid #1f1f2a;
       padding: 48px 0;
@@ -481,17 +454,9 @@
     }
 
     .footer-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       color: #a1a1aa;
       text-decoration: none;
       transition: color 0.3s;
-    }
-
-    .footer-links a svg {
-      width: 14px;
-      height: 14px;
     }
 
     .footer-links a:hover {
@@ -524,7 +489,6 @@
       color: #6366f1;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .container {
         padding: 0 20px;
@@ -547,249 +511,230 @@
       .section-title {
         font-size: 32px;
       }
-      .footer-links {
-        gap: 20px;
-      }
-      .footer-contact {
-        gap: 16px;
-      }
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <nav class="nav">
-        <div class="logo">
-          <div class="logo-icon" id="logoIcon"></div>
-          <div class="logo-text">ML<span>Softworks</span></div>
-        </div>
-        <div class="nav-links">
-          <a href="#features">Funcionalidades</a>
-          <a href="#products">Produtos</a>
-          <a href="#pricing">Preços</a>
-          <a href="#contact">Contato</a>
-          <button class="btn-outline" onclick="window.open('https://mlsoftworks.github.io/financeweb', '_blank')">Login</button>
-        </div>
-      </nav>
-    </div>
-  </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="badge" id="heroBadge"></div>
-      <h1>Gerencie suas finanças<br>com simplicidade e poder</h1>
-      <p>ML Softworks desenvolve soluções completas para gestão financeira pessoal e empresarial.</p>
-      <a href="#products" class="btn-primary" id="ctaButton"></a>
-      <a href="#contact" class="btn-secondary" id="ctaSecondary"></a>
-    </div>
-  </section>
+<svg style="display: none;">
+  <defs>
+    <g id="icon-trending"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m7 16 5-5 3 3 5-5"/></g>
+    <g id="icon-shield"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+    <g id="icon-smartphone"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></g>
+    <g id="icon-brain"><path d="M12 2a10 10 0 0 1 10 10c0 5.5-4 10-10 10-4 0-7-2-9-5"/><path d="M12 8v4l3 3"/></g>
+    <g id="icon-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></g>
+    <g id="icon-target"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></g>
+    <g id="icon-desktop"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></g>
+    <g id="icon-mobile"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></g>
+    <g id="icon-check"><polyline points="20 6 9 17 4 12"/></g>
+    <g id="icon-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></g>
+    <g id="icon-mail"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></g>
+    <g id="icon-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></g>
+    <g id="icon-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></g>
+    <g id="icon-star"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></g>
+    <g id="icon-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g>
+  </defs>
+</svg>
 
-  <section id="features" class="features">
-    <div class="container">
-      <h2 class="section-title">Por que escolher a ML Softworks?</h2>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon1"></div>
-          <h3>Dashboard intuitivo</h3>
-          <p>Visualize todas as suas finanças em um só lugar com gráficos e métricas claras.</p>
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-trending"/></svg>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon2"></div>
-          <h3>Dados no seu controle</h3>
-          <p>Seus dados ficam onde você decide. Segurança e privacidade em primeiro lugar.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon3"></div>
-          <h3>Sincronização mobile</h3>
-          <p>Anote despesas no celular e sincronize automaticamente com o desktop.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon4"></div>
-          <h3>Assistente IA</h3>
-          <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon5"></div>
-          <h3>Gestão de grupos</h3>
-          <p>Divida despesas com amigos, família ou equipes de trabalho.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon" id="featureIcon6"></div>
-          <h3>Metas financeiras</h3>
-          <p>Defina objetivos e acompanhe seu progresso em tempo real.</p>
-        </div>
+        <div class="logo-text">ML<span>Softworks</span></div>
+      </div>
+      <div class="nav-links">
+        <a href="#features">Funcionalidades</a>
+        <a href="#products">Produtos</a>
+        <a href="#pricing">Preços</a>
+        <a href="#contact">Contato</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-star"/></svg>
+      Soluções financeiras inteligentes
+    </div>
+    <h1>Gerencie suas finanças<br>com simplicidade e poder</h1>
+    <p>ML Softworks desenvolve soluções completas para gestão financeira pessoal e empresarial.</p>
+    <a href="#products" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
+      Conhecer Soluções
+    </a>
+    <a href="#contact" class="btn-secondary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-phone"/></svg>
+      Fale conosco
+    </a>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <h2 class="section-title">Por que escolher a ML Softworks?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-trending"/></svg></div>
+        <h3>Dashboard intuitivo</h3>
+        <p>Visualize todas as suas finanças em um só lugar com gráficos e métricas claras.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-shield"/></svg></div>
+        <h3>Dados no seu controle</h3>
+        <p>Seus dados ficam onde você decide. Segurança e privacidade em primeiro lugar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-smartphone"/></svg></div>
+        <h3>Sincronização mobile</h3>
+        <p>Anote despesas no celular e sincronize automaticamente com o desktop.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-brain"/></svg></div>
+        <h3>Assistente IA</h3>
+        <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-users"/></svg></div>
+        <h3>Gestão de grupos</h3>
+        <p>Divida despesas com amigos, família ou equipes de trabalho.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-target"/></svg></div>
+        <h3>Metas financeiras</h3>
+        <p>Defina objetivos e acompanhe seu progresso em tempo real.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="products" class="products">
-    <div class="container">
-      <h2 class="section-title">Nossos Produtos</h2>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-icon" id="productIcon1"></div>
-          <div class="product-tag" id="productTag1"></div>
-          <h3>FinanceWeb</h3>
-          <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
-          <a href="#pricing" class="product-link" id="productLink1"></a>
+<section id="products" class="products">
+  <div class="container">
+    <h2 class="section-title">Nossos Produtos</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-desktop"/></svg></div>
+        <div class="product-tag">Disponível</div>
+        <h3>FinanceWeb</h3>
+        <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
+        <a href="#pricing" class="product-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </div>
+      <div class="product-card coming-soon">
+        <div class="coming-soon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-clock"/></svg>
+          Em breve
         </div>
-        <div class="product-card coming-soon">
-          <div class="coming-soon-badge" id="comingSoonBadge"></div>
-          <div class="product-icon" id="productIcon2"></div>
-          <div class="product-tag" id="productTag2"></div>
-          <h3>FinanceMobile</h3>
-          <p>Acompanhe suas finanças em qualquer lugar. Sincronização offline-first com o desktop.</p>
-          <div id="notifyForm">
-            <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-              <input type="email" id="notifyEmail" placeholder="seu@email.com" style="flex:1; padding: 10px 16px; border-radius: 40px; background: #1f1f2a; border: 1px solid #2a2a35; color: white; font-size: 14px;">
-              <button id="notifyButton" style="padding: 10px 20px; border-radius: 40px; background: linear-gradient(135deg,#6366f1,#a855f7); border: none; color: white; font-weight: 500; cursor: pointer;">Notificar-me</button>
-            </div>
-            <p id="notifyMessage" style="font-size: 11px; color: #a1a1aa; margin-top: 12px;"></p>
+        <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#icon-mobile"/></svg></div>
+        <div class="product-tag">Mobile</div>
+        <h3>FinanceMobile</h3>
+        <p>Acompanhe suas finanças em qualquer lugar. Sincronização offline-first com o desktop.</p>
+        <div style="margin-top: 16px;">
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <input type="email" id="notifyEmail" placeholder="seu@email.com" style="flex:1; padding: 10px 16px; border-radius: 40px; background: #1f1f2a; border: 1px solid #2a2a35; color: white; font-size: 14px;">
+            <button id="notifyButton" style="padding: 10px 20px; border-radius: 40px; background: linear-gradient(135deg,#6366f1,#a855f7); border: none; color: white; font-weight: 500; cursor: pointer;">Notificar</button>
           </div>
+          <p id="notifyMessage" style="font-size: 11px; color: #a1a1aa; margin-top: 12px;"></p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="pricing" class="pricing">
-    <div class="container">
-      <h2 class="section-title">Planos</h2>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Mensal</h3>
-          <div class="price">R$ 10<span>/mês</span></div>
-          <ul>
-            <li id="check1"></li>
-            <li id="check2"></li>
-            <li id="check3"></li>
-            <li id="check4"></li>
-          </ul>
-          <a href="#contact" class="btn-primary" id="pricingBtn1"></a>
-        </div>
-        <div class="pricing-card popular">
-          <div class="popular-badge" id="popularBadge"></div>
-          <h3>Anual</h3>
-          <div class="price">R$ 100<span>/ano</span></div>
-          <ul>
-            <li id="check5"></li>
-            <li id="check6"></li>
-            <li id="check7"></li>
-            <li id="check8"></li>
-          </ul>
-          <a href="#contact" class="btn-primary" id="pricingBtn2"></a>
-        </div>
+<section id="pricing" class="pricing">
+  <div class="container">
+    <h2 class="section-title">Planos</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Mensal</h3>
+        <div class="price">R$ 10<span>/mês</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Dashboard completo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Metas financeiras</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Sincronização mobile</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Suporte por email</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">
+          Assinar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </div>
+      <div class="pricing-card popular">
+        <div class="popular-badge">🔥 Mais popular</div>
+        <h3>Anual</h3>
+        <div class="price">R$ 100<span>/ano</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Tudo do plano Mensal</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> 2 meses grátis</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Suporte prioritário</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg> Preço congelado</li>
+        </ul>
+        <a href="#contact" class="btn-primary" style="background:linear-gradient(135deg,#6366f1,#a855f7);">
+          Assinar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-arrow-right"/></svg>
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact" class="cta">
-    <div class="container">
-      <h2>Pronto para transformar sua gestão financeira?</h2>
-      <p>Baixe o FinanceWeb e comece hoje mesmo.</p>
-      <a href="#" class="btn-primary" id="ctaDownload"></a>
+<section id="contact" class="cta">
+  <div class="container">
+    <h2>Pronto para transformar sua gestão financeira?</h2>
+    <p>Baixe o FinanceWeb e comece hoje mesmo.</p>
+    <a href="#" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-download"/></svg>
+      Baixar Agora
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#features">Funcionalidades</a>
+      <a href="#products">Produtos</a>
+      <a href="#pricing">Preços</a>
+      <a href="#contact">Contato</a>
     </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-links">
-        <a href="#features" id="footerLink1"></a>
-        <a href="#products" id="footerLink2"></a>
-        <a href="#pricing" id="footerLink3"></a>
-        <a href="#contact" id="footerLink4"></a>
-      </div>
-      <div class="footer-contact">
-        <a href="mailto:matheushglira.ml@gmail.com" id="contactEmail"></a>
-        <a href="https://wa.me/5562993753059" target="_blank" id="contactWhatsapp"></a>
-      </div>
-      <p id="copyright"></p>
+    <div class="footer-contact">
+      <a href="mailto:matheushglira.ml@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-mail"/></svg>
+        matheushglira.ml@gmail.com
+      </a>
+      <a href="https://wa.me/5562993753059" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-phone"/></svg>
+        (62) 99375-3059
+      </a>
     </div>
-  </footer>
+    <p>© 2026 ML Softworks - Todos os direitos reservados</p>
+  </div>
+</footer>
 
-  <script>
-    lucide.createIcons();
-
-    // Logo icon
-    document.getElementById('logoIcon').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h.01"/><path d="M7 12h.01"/><path d="M7 8h.01"/><path d="M12 16h.01"/><path d="M12 12h.01"/><path d="M12 8h.01"/><path d="M17 16h.01"/><path d="M17 12h.01"/><path d="M17 8h.01"/></svg>';
-
-    // Hero badge
-    document.getElementById('heroBadge').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10 10 10 0 0 0 10 10 10 10 0 0 0 10-10 10 10 0 0 0-10-10z"/><path d="M12 6v6l4 2"/></svg> Soluções financeiras inteligentes';
-
-    // CTA buttons
-    document.getElementById('ctaButton').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> Conhecer Soluções';
-    document.getElementById('ctaSecondary').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Fale conosco';
-    document.getElementById('ctaDownload').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Baixar Agora';
-
-    // Feature icons
-    const features = [
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16h.01"/><path d="M7 12h.01"/><path d="M7 8h.01"/><path d="M12 16h.01"/><path d="M12 12h.01"/><path d="M12 8h.01"/><path d="M17 16h.01"/><path d="M17 12h.01"/><path d="M17 8h.01"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5.5-4 10-10 10-4 0-7-2-9-5"/><path d="M12 8v4l3 3"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>'
-    ];
-    for (let i = 1; i <= 6; i++) {
-      document.getElementById(`featureIcon${i}`).innerHTML = features[i-1];
+<script>
+  document.getElementById('notifyButton').addEventListener('click', function() {
+    const email = document.getElementById('notifyEmail').value;
+    const message = document.getElementById('notifyMessage');
+    if (email && email.includes('@')) {
+      message.innerHTML = '✓ Obrigado! Avisaremos quando o app estiver disponível.';
+      message.style.color = '#10b981';
+      document.getElementById('notifyEmail').value = '';
+      setTimeout(() => {
+        message.innerHTML = '';
+      }, 3000);
+    } else {
+      message.innerHTML = '✗ Por favor, digite um e-mail válido.';
+      message.style.color = '#ef4444';
+      setTimeout(() => {
+        message.innerHTML = '';
+      }, 3000);
     }
+  });
+</script>
 
-    // Product icons
-    document.getElementById('productIcon1').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>';
-    document.getElementById('productIcon2').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>';
-    
-    // Product tags
-    document.getElementById('productTag1').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg> Disponível';
-    document.getElementById('productTag2').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Mobile';
-    document.getElementById('comingSoonBadge').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Em breve';
-    
-    // Product links
-    document.getElementById('productLink1').innerHTML = 'Saiba mais <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-    
-    // Check icons
-    const checkSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
-    const items = ['Dashboard completo', 'Metas financeiras', 'Sincronização mobile', 'Suporte por email', 'Tudo do plano Mensal', '2 meses grátis', 'Suporte prioritário', 'Preço congelado'];
-    for (let i = 1; i <= 8; i++) {
-      document.getElementById(`check${i}`).innerHTML = checkSvg + ' ' + items[i-1];
-    }
-    
-    // Pricing buttons
-    document.getElementById('pricingBtn1').innerHTML = 'Assinar <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-    document.getElementById('pricingBtn2').innerHTML = 'Assinar <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-    document.getElementById('popularBadge').innerHTML = '🔥 Mais popular';
-    
-    // Footer links
-    document.getElementById('footerLink1').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg> Funcionalidades';
-    document.getElementById('footerLink2').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Produtos';
-    document.getElementById('footerLink3').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg> Preços';
-    document.getElementById('footerLink4').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Contato';
-    
-    // Contact
-    document.getElementById('contactEmail').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg> matheushglira.ml@gmail.com';
-    document.getElementById('contactWhatsapp').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> (62) 99375-3059';
-    
-    // Copyright
-    document.getElementById('copyright').innerHTML = `© ${new Date().getFullYear()} ML Softworks - Todos os direitos reservados`;
-
-    // Notify functionality
-    document.getElementById('notifyButton').addEventListener('click', function() {
-      const email = document.getElementById('notifyEmail').value;
-      const message = document.getElementById('notifyMessage');
-      if (email && email.includes('@')) {
-        message.innerHTML = '✓ Obrigado! Avisaremos quando o app estiver disponível.';
-        message.style.color = '#10b981';
-        document.getElementById('notifyEmail').value = '';
-        setTimeout(() => {
-          message.innerHTML = '';
-        }, 3000);
-      } else {
-        message.innerHTML = '✗ Por favor, digite um e-mail válido.';
-        message.style.color = '#ef4444';
-        setTimeout(() => {
-          message.innerHTML = '';
-        }, 3000);
-      }
-    });
-  </script>
 </body>
 </html>
