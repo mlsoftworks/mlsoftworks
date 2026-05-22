@@ -219,6 +219,13 @@
       color: var(--text);
     }
     .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--border-strong); transform: translateY(-2px); }
+    .btn-trial {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(110, 231, 183, 0.6);
+      color: var(--accent);
+      box-shadow: none;
+    }
+    .btn-trial:hover { background: rgba(110, 231, 183, 0.1); border-color: var(--accent); transform: translateY(-2px); }
 
     /* ---------- Section base ---------- */
     .section { padding: 120px 0; }
@@ -383,8 +390,11 @@
 
     /* ---------- Pricing ---------- */
     .pricing-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 20px; max-width: 880px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     .pricing-card {
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.005));
@@ -400,6 +410,11 @@
       background: linear-gradient(180deg, rgba(124, 124, 255, 0.08), rgba(176, 124, 255, 0.02));
       box-shadow: 0 30px 80px -30px rgba(124, 124, 255, 0.35);
     }
+    .trial-card {
+      border-color: rgba(110, 231, 183, 0.2);
+      background: linear-gradient(180deg, rgba(110, 231, 183, 0.05), rgba(110, 231, 183, 0.01));
+      text-align: center;
+    }
     .popular-badge {
       position: absolute; top: -1px; right: 24px;
       transform: translateY(-50%);
@@ -411,11 +426,12 @@
       box-shadow: 0 6px 20px -6px rgba(124, 124, 255, 0.6);
     }
     .pricing-card h3 { font-size: 16px; color: var(--text-muted); font-weight: 500; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
-    .price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; }
+    .price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 8px; justify-content: center; }
+    .trial-card .price-amount { font-size: 40px; }
     .price-amount { font-family: 'Inter Tight', sans-serif; font-size: 56px; font-weight: 700; letter-spacing: -0.035em; }
     .price-period { font-size: 15px; color: var(--text-muted); }
     .price-note { color: var(--text-dim); font-size: 13px; margin-bottom: 28px; }
-    .pricing-card ul { list-style: none; margin: 0 0 32px; }
+    .pricing-card ul { list-style: none; margin: 0 0 32px; text-align: left; }
     .pricing-card li {
       padding: 9px 0; color: var(--text-muted);
       display: flex; align-items: center; gap: 12px;
@@ -424,7 +440,7 @@
     }
     .pricing-card li:last-child { border-bottom: none; }
     .pricing-card li svg { width: 14px; height: 14px; stroke: var(--accent); flex-shrink: 0; }
-    .pricing-card .btn { width: 100%; justify-content: center; }
+    .pricing-card .btn { width: 100%; justify-content: center; margin-top: 8px; }
 
     /* ---------- CTA ---------- */
     .cta {
@@ -511,6 +527,7 @@
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .footer-brand { grid-column: 1 / -1; }
     }
@@ -581,12 +598,16 @@
       Suas finanças,<br />com <em>clareza absoluta.</em>
     </h1>
     <p class="hero-sub reveal" data-delay="2">
-      A ML Softworks cria soluções premium para gestão financeira pessoal e empresarial. Tudo em um só lugar, com a simplicidade que você merece.
+      A ML Softworks cria soluções para gestão financeira. Tudo em um só lugar, com a simplicidade que você merece.
     </p>
     <div class="hero-actions reveal" data-delay="3">
       <a href="#products" class="btn btn-primary">
         Conhecer soluções
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg>
+      </a>
+      <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="btn btn-trial" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
+        Teste grátis (90 dias)
       </a>
       <a href="#contact" class="btn btn-ghost">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-call"/></svg>
@@ -655,9 +676,9 @@
         <span class="product-tag">Disponível agora</span>
         <h3>FinanceWeb</h3>
         <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
-        <a href="#pricing" class="product-link">
-          Saiba mais
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg>
+        <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="product-link" target="_blank">
+          Baixar agora
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
         </a>
       </div>
       <div class="product-card reveal" data-delay="2">
@@ -684,9 +705,27 @@
     <div class="section-head reveal">
       <div class="eyebrow">Planos</div>
       <h2 class="section-title">Preço justo. Sem surpresas.</h2>
-      <p class="section-sub">Comece a usar hoje. Cancele quando quiser.</p>
+      <p class="section-sub">Comece com 90 dias de teste grátis, sem compromisso.</p>
     </div>
     <div class="pricing-grid">
+      <div class="pricing-card trial-card reveal" data-delay="1">
+        <h3>Teste Grátis</h3>
+        <div class="price">
+          <span class="price-amount">R$ 0</span>
+          <span class="price-period">/ 90 dias</span>
+        </div>
+        <p class="price-note">Acesso completo. Cancele a qualquer momento.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Todas as funcionalidades</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> 90 dias de avaliação</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Sem compromisso</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte incluso</li>
+        </ul>
+        <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="btn btn-trial" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
+          Testar agora
+        </a>
+      </div>
       <div class="pricing-card reveal" data-delay="1">
         <h3>Mensal</h3>
         <div class="price">
@@ -700,7 +739,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Sincronização mobile</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte por email</li>
         </ul>
-        <a href="#contact" class="btn btn-ghost">Começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
+        <a href="mailto:matheushglira.ml@gmail.com?subject=Quero%20o%20plano%20Mensal" class="btn btn-ghost">Começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="pricing-card popular reveal" data-delay="2">
         <span class="popular-badge">Mais popular</span>
@@ -716,7 +755,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte prioritário</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Preço congelado</li>
         </ul>
-        <a href="#contact" class="btn btn-primary">Assinar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
+        <a href="mailto:matheushglira.ml@gmail.com?subject=Quero%20o%20plano%20Anual" class="btn btn-primary">Assinar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
@@ -727,7 +766,7 @@
     <div class="cta-card reveal">
       <h2>Pronto para uma nova forma de gerir suas finanças?</h2>
       <p>Baixe o FinanceWeb e comece hoje mesmo. Leva menos de um minuto.</p>
-      <a href="#" class="btn btn-primary">
+      <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="btn btn-primary" target="_blank">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
         Baixar agora
       </a>
@@ -761,7 +800,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 ML Softworks. Todos os direitos reservados.</span>
-      <span>Feito com cuidado em Goiânia, Brasil.</span>
+      <span>Feito com cuidado em Anápolis, Brasil.</span>
     </div>
   </div>
 </footer>
