@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ML Softworks — Soluções financeiras inteligentes</title>
-<meta name="description" content="FinanceWeb e FinanceMobile — soluções premium para gestão financeira pessoal e empresarial." />
+<meta name="description" content="FinanceWeb e FinanceMobile — soluções premium para gestão financeira pessoal e empresarial. Dashboard, relatórios PDF, empréstimos, metas e muito mais." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -132,6 +132,24 @@
   .container{max-width:var(--container);margin:0 auto;padding:0 28px;position:relative;z-index:3}
   section{position:relative;z-index:3}
 
+  /* Watermark hero */
+  .hero-watermark{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    font-family:'Inter Tight',sans-serif;
+    font-size:clamp(80px,12vw,180px);
+    font-weight:800;
+    letter-spacing:-0.04em;
+    color:rgba(255,255,255,0.02);
+    white-space:nowrap;
+    pointer-events:none;
+    z-index:0;
+    user-select:none;
+    text-transform:uppercase;
+  }
+
   /* ---------- Header ---------- */
   .header{
     position:sticky;top:0;
@@ -182,7 +200,7 @@
   .nav-cta:hover{background:rgba(255,255,255,.1)!important;border-color:var(--border-strong)}
 
   /* ---------- Hero ---------- */
-  .hero{padding:160px 0 140px;text-align:center;position:relative}
+  .hero{padding:140px 0 120px;text-align:center;position:relative;overflow:hidden}
   .hero-orb{
     position:absolute;left:50%;top:50%;
     transform:translate(-50%,-50%);
@@ -197,39 +215,14 @@
     66%{transform:translate(-52%,-48%) scale(.97) rotate(-2deg)}
   }
 
-  .badge{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:7px 14px 7px 10px;
-    background:rgba(255,255,255,.04);
-    border:1px solid var(--border);
-    border-radius:999px;
-    font-size:13px;color:var(--text-muted);font-weight:500;
-    margin-bottom:36px;backdrop-filter:blur(10px);
-    position:relative;overflow:hidden;
-  }
-  .badge::before{
-    content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;
-    background:conic-gradient(from var(--a,0deg),transparent 0%,rgba(139,139,255,.5) 25%,transparent 50%);
-    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-    -webkit-mask-composite:xor;mask-composite:exclude;
-    animation:spin 6s linear infinite;
-  }
-  @property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
-  @keyframes spin{to{--a:360deg}}
-  .badge-dot{
-    width:6px;height:6px;border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 0 4px rgba(110,231,183,.15);
-    animation:pulse 2s var(--ease-soft) infinite;
-  }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-
   .hero h1{
     font-size:clamp(44px,7vw,92px);
     font-weight:700;letter-spacing:-.04em;line-height:0.98;
     margin-bottom:28px;
     background:linear-gradient(180deg,#fff 0%,#a8a8b8 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
+    position:relative;
+    z-index:2;
   }
   .hero h1 em{
     font-family:'Instrument Serif',serif;
@@ -260,13 +253,17 @@
     font-size:clamp(16px,1.5vw,19px);
     color:var(--text-muted);
     max-width:600px;margin:0 auto 48px;line-height:1.6;
+    position:relative;
+    z-index:2;
   }
-  .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
 
   /* trust strip */
   .trust{
     margin-top:96px;display:flex;justify-content:center;align-items:center;
     gap:48px;flex-wrap:wrap;opacity:.6;
+    position:relative;
+    z-index:2;
   }
   .trust span{
     font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);
@@ -350,11 +347,11 @@
   .section-title em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
   .section-sub{color:var(--text-muted);font-size:17px;max-width:560px;margin:0 auto}
 
-  /* ---------- Features ---------- */
-  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden}
+  /* ---------- Features Grid (8 cards 2x4) ---------- */
+  .features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden}
   .feature-card{
     background:var(--bg);
-    padding:40px 32px;
+    padding:40px 28px;
     transition:background .4s var(--ease);
     position:relative;overflow:hidden;
   }
@@ -375,7 +372,7 @@
   .feature-card:hover .feature-icon{transform:translateY(-3px) rotate(-4deg)}
   .feature-icon svg{width:20px;height:20px;stroke:var(--brand)}
   .feature-card h3{font-size:17px;margin-bottom:10px;letter-spacing:-.015em}
-  .feature-card p{color:var(--text-muted);font-size:14.5px;line-height:1.65}
+  .feature-card p{color:var(--text-muted);font-size:14px;line-height:1.65}
   .chip{
     display:inline-flex;align-items:center;gap:6px;
     padding:4px 10px;background:rgba(251,191,36,.1);
@@ -385,8 +382,6 @@
     font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
   }
   .chip svg{width:10px;height:10px}
-
-  /* Badge beta específica para IA */
   .badge-beta{
     display:inline-flex;align-items:center;gap:6px;
     padding:4px 10px;background:linear-gradient(135deg,rgba(139,139,255,.2),rgba(196,124,255,.12));
@@ -640,6 +635,8 @@
   .reveal[data-delay="4"]{transition-delay:.32s}
   .reveal[data-delay="5"]{transition-delay:.4s}
   .reveal[data-delay="6"]{transition-delay:.48s}
+  .reveal[data-delay="7"]{transition-delay:.56s}
+  .reveal[data-delay="8"]{transition-delay:.64s}
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -649,8 +646,10 @@
   }
 
   /* ---------- Responsive ---------- */
-  @media (max-width:960px){
+  @media (max-width:1024px){
     .features-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:960px){
     .stats{grid-template-columns:repeat(2,1fr)}
     .pricing-grid{grid-template-columns:repeat(2,1fr)}
     .footer-grid{grid-template-columns:1fr 1fr}
@@ -702,6 +701,9 @@
     <g id="i-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
     <g id="i-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
     <g id="i-star"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></g>
+    <g id="i-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></g>
+    <g id="i-credit-card"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="7" y1="15" x2="12" y2="15"/></g>
+    <g id="i-piggy-bank"><path d="M19 7c.7 0 1.3.2 1.8.5A5 5 0 0 1 22 12v3c0 .6-.2 1.2-.6 1.7L19 17v3c0 .6-.4 1-1 1h-2c-.6 0-1-.4-1-1v-2h-4v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1v-3l-1.4-1.3A3 3 0 0 1 4 15V9c0-1.2.6-2.3 1.5-3"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="12" r="1"/></g>
   </defs>
 </svg>
 
@@ -725,12 +727,9 @@
 </header>
 
 <section class="hero">
+  <div class="hero-watermark">ML Softworks</div>
   <div class="hero-orb" aria-hidden="true"></div>
   <div class="container">
-    <div class="badge reveal">
-      <span class="badge-dot"></span>
-      Nova era da gestão financeira inteligente
-    </div>
     <h1>
       <span class="word"><span>Suas</span></span>
       <span class="word"><span>finanças,</span></span><br/>
@@ -745,7 +744,7 @@
         Conhecer soluções
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg>
       </a>
-      <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="btn btn-trial" target="_blank" data-magnetic>
+      <a href="#pricing" class="btn btn-trial" data-magnetic id="trialBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
         Teste grátis (90 dias)
       </a>
@@ -767,8 +766,6 @@
   </div>
 </section>
 
-
-
 <section id="features" class="section">
   <div class="container">
     <div class="section-head reveal">
@@ -783,11 +780,16 @@
         <p>Visualize todas as suas finanças em um só lugar com gráficos e métricas claras.</p>
       </div>
       <div class="feature-card reveal" data-delay="2">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-file-text"/></svg></div>
+        <h3>Relatórios em PDF</h3>
+        <p>Exporte relatórios completos com gráficos, análises e extrato detalhado com um clique.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="3">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-shield"/></svg></div>
         <h3>Dados no seu controle</h3>
         <p>Seus dados ficam onde você decide. Segurança e privacidade em primeiro lugar.</p>
       </div>
-      <div class="feature-card reveal" data-delay="3">
+      <div class="feature-card reveal" data-delay="4">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-phone"/></svg></div>
         <h3>Sincronização mobile</h3>
         <p>Anote despesas no celular e sincronize automaticamente com o desktop.</p>
@@ -796,7 +798,7 @@
           Em breve
         </span>
       </div>
-      <div class="feature-card reveal" data-delay="1">
+      <div class="feature-card reveal" data-delay="5">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-brain"/></svg></div>
         <h3>Assistente IA</h3>
         <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
@@ -805,15 +807,20 @@
           Beta
         </span>
       </div>
-      <div class="feature-card reveal" data-delay="2">
+      <div class="feature-card reveal" data-delay="6">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-users"/></svg></div>
         <h3>Gestão de grupos</h3>
         <p>Divida despesas com amigos, família ou equipes de trabalho.</p>
       </div>
-      <div class="feature-card reveal" data-delay="3">
-        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-target"/></svg></div>
-        <h3>Metas financeiras</h3>
-        <p>Defina objetivos e acompanhe seu progresso em tempo real.</p>
+      <div class="feature-card reveal" data-delay="7">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-credit-card"/></svg></div>
+        <h3>Controle de empréstimos</h3>
+        <p>Gerencie quem te deve e quanto você deve para outras pessoas.</p>
+      </div>
+      <div class="feature-card reveal" data-delay="8">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-piggy-bank"/></svg></div>
+        <h3>Metas e poupanças</h3>
+        <p>Defina objetivos financeiros e acompanhe suas reservas em tempo real.</p>
       </div>
     </div>
 
@@ -850,7 +857,7 @@
         <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-desktop"/></svg></div>
         <span class="product-tag">Disponível agora</span>
         <h3>FinanceWeb</h3>
-        <p>Gestão financeira completa para desktop. Dashboard, relatórios, metas, grupos e muito mais.</p>
+        <p>Gestão financeira completa para desktop. Dashboard, relatórios PDF, empréstimos, grupos e muito mais.</p>
         <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="product-link" target="_blank" data-magnetic>
           Baixar agora
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
@@ -891,10 +898,10 @@
         </div>
         <p class="price-note">Acesso completo. Cancele a qualquer momento.</p>
         <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Todas as funcionalidades</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Dashboard completo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Relatórios em PDF</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> 90 dias de avaliação</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Sem compromisso</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte incluso</li>
         </ul>
         <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="btn btn-trial" target="_blank" data-magnetic>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
@@ -910,8 +917,8 @@
         <p class="price-note">Flexibilidade total, mês a mês.</p>
         <ul>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Dashboard completo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Relatórios PDF</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Metas financeiras</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Sincronização mobile</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Suporte por email</li>
         </ul>
         <a href="mailto:matheushglira.ml@gmail.com?subject=Quero%20o%20plano%20Mensal" class="btn btn-ghost" data-magnetic>Começar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
@@ -999,7 +1006,7 @@
           </div>
           <div class="logo-text">ML<span>Softworks</span></div>
         </a>
-        <p>Soluções premium para gestão financeira pessoal e empresarial.</p>
+        <p>Soluções premium para gestão financeira pessoal e empresarial. Dashboard, relatórios PDF, empréstimos, metas e muito mais.</p>
       </div>
       <div class="footer-col">
         <h4>Navegação</h4>
@@ -1032,6 +1039,18 @@
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Smooth scroll para o botão de teste grátis
+  const trialBtn = document.getElementById('trialBtn');
+  if (trialBtn) {
+    trialBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const pricingSection = document.getElementById('pricing');
+      if (pricingSection) {
+        pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
 
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
