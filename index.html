@@ -386,6 +386,18 @@
   }
   .chip svg{width:10px;height:10px}
 
+  /* Badge beta específica para IA */
+  .badge-beta{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:4px 10px;background:linear-gradient(135deg,rgba(139,139,255,.2),rgba(196,124,255,.12));
+    border:1px solid rgba(139,139,255,.55);
+    border-radius:999px;font-size:11px;font-weight:600;
+    color:var(--brand);margin-top:16px;
+    font-family:'JetBrains Mono',monospace;letter-spacing:.05em;
+    backdrop-filter:blur(4px);
+  }
+  .badge-beta svg{width:11px;height:11px;stroke:var(--brand);}
+
   /* ---------- Stats strip ---------- */
   .stats{
     display:grid;grid-template-columns:repeat(4,1fr);
@@ -788,6 +800,10 @@
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-brain"/></svg></div>
         <h3>Assistente IA</h3>
         <p>Cadastre contas usando linguagem natural com nosso Chat Wizard.</p>
+        <span class="badge-beta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-spark"/></svg>
+          Beta
+        </span>
       </div>
       <div class="feature-card reveal" data-delay="2">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#i-users"/></svg></div>
