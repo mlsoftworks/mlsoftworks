@@ -442,6 +442,97 @@
     .pricing-card li svg { width: 14px; height: 14px; stroke: var(--accent); flex-shrink: 0; }
     .pricing-card .btn { width: 100%; justify-content: center; margin-top: 8px; }
 
+    /* ---------- First Steps ---------- */
+    .first-steps {
+      padding: 60px 0;
+    }
+    .steps-card {
+      background: linear-gradient(180deg, rgba(110, 231, 183, 0.05), rgba(110, 231, 183, 0.01));
+      border: 1px solid rgba(110, 231, 183, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .steps-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .steps-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(110, 231, 183, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .steps-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
+    .steps-header h3 {
+      font-size: 24px;
+      margin: 0;
+    }
+    .credentials {
+      background: rgba(0,0,0,0.3);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 28px;
+      font-family: 'Inter Tight', monospace;
+    }
+    .cred-row {
+      display: flex;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .cred-row:last-child { border-bottom: none; }
+    .cred-label {
+      width: 80px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .cred-value {
+      color: var(--text);
+      font-family: monospace;
+    }
+    .steps-warning {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      font-size: 14px;
+      color: var(--warning);
+    }
+    .steps-warning svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .steps-contact {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .steps-contact a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      transition: all 0.3s var(--ease);
+    }
+    .steps-contact a:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .steps-contact svg { width: 14px; height: 14px; }
+
     /* ---------- CTA ---------- */
     .cta {
       padding: 140px 0;
@@ -539,10 +630,11 @@
       .features-grid { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .product-card, .pricing-card { padding: 32px 28px; }
+      .product-card, .pricing-card, .steps-card { padding: 32px 28px; }
       .cta-card { padding: 56px 24px; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { justify-content: center; text-align: center; }
+      .steps-contact { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
@@ -565,6 +657,7 @@
     <g id="i-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></g>
     <g id="i-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></g>
     <g id="i-spark"><path d="M12 2v6m0 8v6M2 12h6m8 0h6M5 5l4 4m6 6 4 4M5 19l4-4m6-6 4-4"/></g>
+    <g id="i-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></g>
   </defs>
 </svg>
 
@@ -756,6 +849,47 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><use href="#i-check"/></svg> Preço congelado</li>
         </ul>
         <a href="mailto:matheushglira.ml@gmail.com?subject=Quero%20o%20plano%20Anual" class="btn btn-primary">Assinar agora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Primeiros Passos -->
+<section class="first-steps">
+  <div class="container">
+    <div class="steps-card reveal">
+      <div class="steps-header">
+        <div class="steps-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-shield-check"/></svg>
+        </div>
+        <h3>Primeiros passos</h3>
+      </div>
+
+      <div class="credentials">
+        <div class="cred-row">
+          <span class="cred-label">👤 Usuário</span>
+          <span class="cred-value">admin</span>
+        </div>
+        <div class="cred-row">
+          <span class="cred-label">🔑 Senha</span>
+          <span class="cred-value">admin123</span>
+        </div>
+      </div>
+
+      <div class="steps-warning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-clock"/></svg>
+        <span>Recomendamos trocar a senha após o primeiro acesso por segurança.</span>
+      </div>
+
+      <div class="steps-contact">
+        <a href="mailto:matheushglira.ml@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-mail"/></svg>
+          Email
+        </a>
+        <a href="https://wa.me/5562993753059" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-call"/></svg>
+          WhatsApp
+        </a>
       </div>
     </div>
   </div>
