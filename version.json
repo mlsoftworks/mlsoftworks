@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "download_url": "https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe",
-  "release_notes": "Versão inicial do FinanceWeb"
+  "release_notes": "Correções de bugs e melhorias de performance"
 }
