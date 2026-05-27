@@ -146,7 +146,7 @@
     text-transform:uppercase;
   }
 
-  /* Header */
+  /* Header mais limpo */
   .header{
     position:sticky;top:0;
     background:rgba(7,7,10,0.55);
@@ -154,7 +154,7 @@
     -webkit-backdrop-filter:saturate(180%) blur(20px);
     border-bottom:1px solid transparent;
     z-index:50;
-    transition:border-color .3s var(--ease),background .3s var(--ease),padding .3s var(--ease);
+    transition:border-color .3s var(--ease),background .3s var(--ease);
   }
   .header.scrolled{border-bottom-color:var(--border);background:rgba(7,7,10,0.85)}
   .nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
@@ -186,16 +186,9 @@
     transition:color .25s var(--ease-soft),background .25s var(--ease-soft);
   }
   .nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
-  .nav-cta{
-    padding:9px 18px!important;
-    background:rgba(255,255,255,.06);
-    color:var(--text)!important;
-    border:1px solid var(--border);
-  }
-  .nav-cta:hover{background:rgba(255,255,255,.1)!important;border-color:var(--border-strong)}
 
   /* Hero da página Downloads */
-  .downloads-hero{padding:120px 0 80px;text-align:center;position:relative;overflow:hidden}
+  .downloads-hero{padding:100px 0 60px;text-align:center;position:relative;overflow:hidden}
   .hero-orb{
     position:absolute;left:50%;top:50%;
     transform:translate(-50%,-50%);
@@ -233,7 +226,7 @@
   .downloads-hero p{font-size:clamp(16px,1.5vw,19px);color:var(--text-muted);max-width:600px;margin:0 auto;line-height:1.6;position:relative;z-index:2}
 
   /* Cards de versão */
-  .versions-section{padding:60px 0 120px}
+  .versions-section{padding:40px 0 120px}
   .version-card{
     background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.005));
     border:1px solid var(--border);
@@ -241,8 +234,6 @@
     padding:40px;
     margin-bottom:24px;
     transition:transform .4s var(--ease),border-color .4s var(--ease);
-    position:relative;
-    overflow:hidden;
   }
   .version-card:hover{transform:translateY(-4px);border-color:rgba(139,139,255,.3)}
   .version-card.latest{
@@ -333,6 +324,23 @@
   .changelog li svg{width:14px;height:14px;stroke:var(--brand-3);flex-shrink:0;margin-top:2px}
   .changelog li strong{color:var(--text);font-weight:600}
 
+  /* Loader */
+  .loader{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:80px 0;
+  }
+  .loader-spinner{
+    width:40px;
+    height:40px;
+    border:2px solid var(--border);
+    border-top-color:var(--brand);
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg)}}
+
   /* Footer */
   .footer{border-top:1px solid var(--border);padding:64px 0 40px;color:var(--text-muted);position:relative;z-index:3}
   .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px}
@@ -408,8 +416,7 @@
         <a href="index.html#features">Funcionalidades</a>
         <a href="index.html#products">Produtos</a>
         <a href="index.html#pricing">Preços</a>
-        <a href="#downloads" class="nav-cta">Downloads</a>
-        <a href="index.html#contact">Fale conosco</a>
+        <a href="index.html#contact">Contato</a>
       </div>
     </nav>
   </div>
@@ -420,87 +427,14 @@
   <div class="hero-orb" aria-hidden="true"></div>
   <div class="container">
     <div class="eyebrow reveal">Atualizações</div>
-    <h1 class="reveal" data-delay="1">Baixe a versão mais recente</h1>
+    <h1 class="reveal" data-delay="1">Baixe a versão <em>mais recente</em></h1>
     <p class="reveal" data-delay="2">Sempre atualizado com as melhores funcionalidades e correções.</p>
   </div>
 </section>
 
 <section id="downloads" class="versions-section">
-  <div class="container">
-
-    <!-- Versão 1.0.2 (Futura - exemplo) -->
-    <div class="version-card latest reveal" data-delay="1" style="opacity:0.6; filter:grayscale(0.2)">
-      <div class="latest-badge">Próxima versão</div>
-      <div class="version-header">
-        <div class="version-tag">
-          <span class="version-number">v1.0.2</span>
-          <span class="version-date">Em desenvolvimento</span>
-        </div>
-        <span class="download-btn" style="opacity:0.5; cursor:default">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
-          Em breve
-        </span>
-      </div>
-      <div class="changelog">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-spark"/></svg> Novidades</h4>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Notificação de atualização</strong> — Banner no app avisando sobre novas versões</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Página de Downloads</strong> — Histórico de versões e changelog</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Melhorias de performance</strong> no dashboard</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Correções de bugs menores</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Versão 1.0.1 -->
-    <div class="version-card latest reveal" data-delay="2">
-      <div class="latest-badge">Última versão</div>
-      <div class="version-header">
-        <div class="version-tag">
-          <span class="version-number">v1.0.1</span>
-          <span class="version-date">20 de Maio, 2026</span>
-        </div>
-        <a href="https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe" class="download-btn" data-magnetic>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
-          Baixar
-        </a>
-      </div>
-      <div class="changelog">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-star"/></svg> Melhorias e correções</h4>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Relatórios em PDF</strong> — Exporte relatórios completos com gráficos e análises</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Cartões com competência</strong> — Sistema calcula o mês correto de cada compra</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Metas com Jornada Inteligente</strong> — Plano automático com 3 estratégias de replanejamento</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> <strong>Empréstimos</strong> — Controle individual de quem te deve, marque parcelas recebidas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Correções de bugs no dashboard e sincronização</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Versão 1.0.0 -->
-    <div class="version-card reveal" data-delay="3">
-      <div class="version-header">
-        <div class="version-tag">
-          <span class="version-number">v1.0.0</span>
-          <span class="version-date">15 de Maio, 2026</span>
-        </div>
-        <a href="https://github.com/mlsoftworks/mlsoftworks/releases/download/v1.0.0/FinanceWeb_Setup.exe" class="download-btn" data-magnetic>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
-          Baixar
-        </a>
-      </div>
-      <div class="changelog">
-        <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-spark"/></svg> Lançamento inicial</h4>
-        <ul>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Dashboard completo com gráficos e métricas</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Gestão de pessoas, grupos e salários</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Controle de contas (débito, crédito, pix, crediário)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Parcelas editáveis e divisão de gastos</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Chat Wizard com IA (Beta)</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> Sistema de licença com trial de 90 dias</li>
-        </ul>
-      </div>
-    </div>
+  <div class="container" id="versionsContainer">
+    <div class="loader"><div class="loader-spinner"></div></div>
   </div>
 </section>
 
@@ -537,6 +471,7 @@
 </footer>
 
 <script>
+  // Header scroll
   const header = document.getElementById('header');
   const progress = document.getElementById('progress');
   const onScroll = () => {
@@ -548,16 +483,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
+  // Custom cursor
   const cursor = document.getElementById('cursor');
   const cursorDot = document.getElementById('cursorDot');
   const spotlight = document.getElementById('spotlight');
@@ -598,6 +524,99 @@
     const y = (e.clientY / window.innerHeight - 0.5) * 30;
     orb.style.translate = `${x}px ${y}px`;
   });
+
+  // Carregar versões do JSON
+  async function loadVersions() {
+    const container = document.getElementById('versionsContainer');
+    try {
+      const response = await fetch('versions.json');
+      const data = await response.json();
+      const versions = data.versions;
+      
+      container.innerHTML = '';
+      
+      versions.forEach((version, index) => {
+        const isLatest = version.is_latest;
+        const cardClass = `version-card ${isLatest ? 'latest' : ''} reveal`;
+        const delay = (index + 1) % 3 === 0 ? 3 : (index + 1) % 3;
+        
+        let changelogHtml = '';
+        version.changelog.forEach(item => {
+          let displayItem = item;
+          // Converter markdown simples para HTML
+          if (item.startsWith('✨')) displayItem = item;
+          else if (item.startsWith('📥')) displayItem = item;
+          else if (item.startsWith('🔍')) displayItem = item;
+          else if (item.startsWith('📎')) displayItem = item;
+          else if (item.startsWith('🎨')) displayItem = item;
+          else if (item.startsWith('⚡')) displayItem = item;
+          else if (item.startsWith('📱')) displayItem = item;
+          else if (item.startsWith('🐛')) displayItem = item;
+          else if (item.startsWith('🚀')) displayItem = item;
+          else if (item.startsWith('📊')) displayItem = item;
+          else if (item.startsWith('👥')) displayItem = item;
+          else if (item.startsWith('💳')) displayItem = item;
+          else if (item.startsWith('🎯')) displayItem = item;
+          else if (item.startsWith('🤖')) displayItem = item;
+          else if (item.startsWith('🔐')) displayItem = item;
+          changelogHtml += `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> ${displayItem}</li>`;
+        });
+        
+        const cardHtml = `
+          <div class="${cardClass}" data-delay="${delay}">
+            ${isLatest ? '<div class="latest-badge">Última versão</div>' : ''}
+            <div class="version-header">
+              <div class="version-tag">
+                <span class="version-number">${version.version}</span>
+                <span class="version-date">${version.date}</span>
+              </div>
+              <a href="${version.download_url}" class="download-btn" data-magnetic>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-download"/></svg>
+                Baixar
+              </a>
+            </div>
+            <div class="changelog">
+              <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-star"/></svg> Novidades e melhorias</h4>
+              <ul>
+                ${changelogHtml}
+              </ul>
+            </div>
+          </div>
+        `;
+        container.innerHTML += cardHtml;
+      });
+      
+      // Reaplicar observer para os novos elementos
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      
+      // Reaplicar magnetic buttons
+      document.querySelectorAll('[data-magnetic]').forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const x = e.clientX - r.left - r.width / 2;
+          const y = e.clientY - r.top - r.height / 2;
+          el.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.transform = 'translate(0,0)';
+        });
+      });
+      
+    } catch (error) {
+      console.error('Erro ao carregar versões:', error);
+      container.innerHTML = '<div class="error" style="text-align:center;color:var(--text-muted);padding:60px">Erro ao carregar versões. Tente novamente mais tarde.</div>';
+    }
+  }
+  
+  loadVersions();
 </script>
 </body>
 </html>
