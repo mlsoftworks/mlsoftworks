@@ -1,5 +1,45 @@
 {
-  "version": "1.0.1",
-  "download_url": "https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe",
-  "release_notes": "Correções de bugs e melhorias de performance"
+  "latest": "1.0.2",
+  "versions": [
+    {
+      "version": "1.0.2",
+      "date": "27 de Maio, 2026",
+      "download_url": "https://github.com/mlsoftworks/mlsoftworks/releases/latest/download/FinanceWeb_Setup.exe",
+      "is_latest": true,
+      "changelog": [
+        "✨ Sistema de notificação de atualizações (banner no app)",
+        "📥 Página de Downloads com histórico de versões",
+        "🔍 Filtros clicáveis por tipo de pagamento no dashboard",
+        "📎 Botão de exportar contas para CSV",
+        "🎨 Melhorias de UX no cadastro e edição de contas",
+        "⚡ Correções de performance no carregamento do dashboard"
+      ]
+    },
+    {
+      "version": "1.0.1",
+      "date": "20 de Maio, 2026",
+      "download_url": "https://github.com/mlsoftworks/mlsoftworks/releases/download/v1.0.1/FinanceWeb_Setup.exe",
+      "is_latest": false,
+      "changelog": [
+        "📱 Página Mobile Sync (em breve)",
+        "🎨 Melhorias visuais no dashboard",
+        "🐛 Correções de bugs menores"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "15 de Maio, 2026",
+      "download_url": "https://github.com/mlsoftworks/mlsoftworks/releases/download/v1.0.0/FinanceWeb_Setup.exe",
+      "is_latest": false,
+      "changelog": [
+        "🚀 Lançamento inicial",
+        "📊 Dashboard completo com gráficos e métricas",
+        "👥 Gestão de pessoas, grupos e salários",
+        "💳 Controle de contas (débito, crédito, pix, crediário)",
+        "🎯 Metas financeiras",
+        "🤖 Chat Wizard IA (Beta)",
+        "🔐 Sistema de licença com trial de 90 dias"
+      ]
+    }
+  ]
 }
