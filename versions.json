@@ -9,7 +9,7 @@
       "changelog": [
         "✨ Sistema de notificação de atualizações (banner no app)",
         "📥 Página de Downloads com histórico de versões",
-        "🔍 Filtros clicáveis por tipo de pagamento no dashboard",
+        "🔍 Filtros clicáveis por tipo de pagamento na página de contas",
         "📎 Botão de exportar contas para CSV",
         "🎨 Melhorias de UX no cadastro e edição de contas",
         "⚡ Correções de performance no carregamento do dashboard"
