@@ -406,17 +406,17 @@
 <header class="header" id="header">
   <div class="container">
     <nav class="nav">
-      <a href="/mlsoftworks/" class="logo" data-magnetic>
+      <a href="./" class="logo" data-magnetic>
         <div class="logo-mark">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-trend"/></svg>
         </div>
         <div class="logo-text">ML<span>Softworks</span></div>
       </a>
       <div class="nav-links">
-        <a href="index.html#features">Funcionalidades</a>
-        <a href="index.html#products">Produtos</a>
-        <a href="index.html#pricing">Preços</a>
-        <a href="index.html#contact">Contato</a>
+        <a href="./#features">Funcionalidades</a>
+        <a href="./#products">Produtos</a>
+        <a href="./#pricing">Preços</a>
+        <a href="./#contact">Contato</a>
       </div>
     </nav>
   </div>
@@ -442,7 +442,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/mlsoftworks/" class="logo" data-magnetic>
+        <a href="./" class="logo" data-magnetic>
           <div class="logo-mark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-trend"/></svg>
           </div>
@@ -452,9 +452,9 @@
       </div>
       <div class="footer-col">
         <h4>Navegação</h4>
-        <a href="index.html#features">Funcionalidades</a>
-        <a href="index.html#products">Produtos</a>
-        <a href="index.html#pricing">Preços</a>
+        <a href="./#features">Funcionalidades</a>
+        <a href="./#products">Produtos</a>
+        <a href="./#pricing">Preços</a>
         <a href="downloads.html">Downloads</a>
       </div>
       <div class="footer-col">
@@ -543,22 +543,6 @@
         let changelogHtml = '';
         version.changelog.forEach(item => {
           let displayItem = item;
-          // Converter markdown simples para HTML
-          if (item.startsWith('✨')) displayItem = item;
-          else if (item.startsWith('📥')) displayItem = item;
-          else if (item.startsWith('🔍')) displayItem = item;
-          else if (item.startsWith('📎')) displayItem = item;
-          else if (item.startsWith('🎨')) displayItem = item;
-          else if (item.startsWith('⚡')) displayItem = item;
-          else if (item.startsWith('📱')) displayItem = item;
-          else if (item.startsWith('🐛')) displayItem = item;
-          else if (item.startsWith('🚀')) displayItem = item;
-          else if (item.startsWith('📊')) displayItem = item;
-          else if (item.startsWith('👥')) displayItem = item;
-          else if (item.startsWith('💳')) displayItem = item;
-          else if (item.startsWith('🎯')) displayItem = item;
-          else if (item.startsWith('🤖')) displayItem = item;
-          else if (item.startsWith('🔐')) displayItem = item;
           changelogHtml += `<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><use href="#i-check"/></svg> ${displayItem}</li>`;
         });
         
